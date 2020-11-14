@@ -36,7 +36,6 @@ All memory below page 4096 is global. That is, it is usable and visible by all p
 Two page replacement algorithms have been implemented
 1. Second Chance page replacement (SC)
 SC is implemented using a circular queue. When a page replacement occurs, SC first looks at the current position in the queue (current position starts from the head of the queue), checks to see whether its reference bit is set (i.e., pt_acc = 1). If it is not set, the page is swapped out. Otherwise, the reference bit is cleared, the current position moves to the next page and this process is repeated. If all the pages have their reference bits set, on the second encounter, the page will be swapped out, as it now has its reference bit cleared.
-<br />
 2. Aging page replacement (AGING)
 For AGING, when a frame is allocated for a page, you insert the frame into a FIFO queue. When a page replacement occurs, we first decrease by half (= one bit shift to the right) the age of each page in the FIFO queue. If a page has been accessed (i.e., pt_acc = 1), you add 128 to its age (255 is the maximum age). Then, a page with the youngest age is replaced first. If more than one page have a common smallest value, a page that is closest to FIFO queue header, i.e. the oldest page among them in memory, is used for replacement.
 
